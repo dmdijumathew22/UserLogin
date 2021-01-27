@@ -8,12 +8,23 @@
 </head>
 <body>
 	<div align="center">
-		<h2>Log In</h2>
+		<h2 >Log In</h2>
+
+		${msg}
 		<form action="${pageContext.request.contextPath}/loginservice"
 			method="post">
-			User Name:<input type="text" name="userid" /><br /> <br />
-			Password:<input type="password" name="password" /><br /> <br /> <input
-				type="submit" value="login" />
+			<table style="with: 50%">
+				<tr>
+					<td>User Name:</td>
+					<td><input type="text" name="userid" /></td>
+				</tr>
+				<tr>
+					<td>Password:</td>
+					<td><input type="password" name="password" /></td>
+				</tr>
+
+			</table>
+			<input type="submit" value="login" />
 		</form>
 		<h5>*********************************************************</h5>
 		<h4>New Here...</h4>

@@ -3,6 +3,7 @@ package com.hcl.simplilean.UserLogin.services;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -17,20 +18,13 @@ import com.hcl.simplilean.UserLogin.entity.UserEntity;
 @WebServlet("/loginservice")
 public class LoginService extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public LoginService() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+	public LoginService() {
+		super();
+		// TODO Auto-generated constructor stub
 	}
 
 	/**
@@ -43,8 +37,9 @@ public class LoginService extends HttpServlet {
 			out.println("Log In Successfull <br>");
 			out.println("<a href=\"/user/index.jsp\">Log Out</a>");
 		}else {
-			out.println("Log In UnSuccessfull <br> Please Sign Up");
-			out.println("<a href=\"/user/registration.jsp\">Sign Up</a>");
+			RequestDispatcher rd = getServletContext().getRequestDispatcher("/index.jsp");
+			request.setAttribute( "msg","<div style=\"color:Tomato;\">Wrong Username or Password used</div>");
+			rd.forward(request, response);
 		}
 	}
 

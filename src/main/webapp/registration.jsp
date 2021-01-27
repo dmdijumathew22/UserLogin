@@ -36,6 +36,7 @@
 			<input type="submit" value="Submit" />
 		</form>
 		<h5>*********************************************************</h5>
+		${msg}
 		<h4>Already have an account?</h4>
 		<a href="/user/index.jsp">Log In Here</a>
 	</div>
