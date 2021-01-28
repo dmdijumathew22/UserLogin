@@ -9,10 +9,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import org.hibernate.Session;
-
-import com.hcl.simplilean.UserLogin.hibernate.HibernateUtils;
-
 import lombok.Getter;
 import lombok.NonNull;
 import lombok.Setter;
@@ -27,10 +23,10 @@ public class UserEntity implements Serializable{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	static Session hibernateSession;
+	
 
 	@Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
 	private long id;
 	
@@ -54,32 +50,7 @@ public class UserEntity implements Serializable{
 	@NonNull
 	private String email;
 	
-	public static UserEntity find(String userid) {
-		hibernateSession = HibernateUtils.buildSessionFactory().openSession();
-    	hibernateSession.beginTransaction();
-    	UserEntity u = (UserEntity) hibernateSession.
-    					createQuery("FROM UserEntity  U WHERE U.userid= :userid").
-    					setParameter("userid",userid).uniqueResult();
-    	hibernateSession.getTransaction().commit();
-    	hibernateSession.close();
-		
-		return u;
-		
-	}
 	
-	public static boolean validate(String userid, String pwd) {
-		
-    	UserEntity u = UserEntity.find(userid);
-    	if (u!=null) {
-    		if (u.getPwd().equals(pwd)) {
-    			return true;
-    		}
-    			
-    	}
-    	
-		
-		return false;
-		
-	}
+	
 
 }

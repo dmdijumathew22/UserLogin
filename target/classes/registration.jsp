@@ -9,7 +9,7 @@
 <body>
 	<div align="center">
 	<h2>User Registration</h2>
-		<form action="${pageContext.request.contextPath}/RegisterService"
+		<form action="RegisterService"
 			method="post">
 			<table style="with: 50%">
 				<tr>
@@ -27,6 +27,10 @@
 				<tr>
 					<td>Password</td>
 					<td><input type="password" name="pwd" /></td>
+				</tr>
+				<tr>
+					<td>Confirm Password</td>
+					<td><input type="password" name="cnfpwd" /></td>
 				</tr>
 				<tr>
 					<td>Email Address</td>
