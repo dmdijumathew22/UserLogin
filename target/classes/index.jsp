@@ -11,7 +11,7 @@
 		<h2 >Log In</h2>
 
 		${msg}
-		<form action="${pageContext.request.contextPath}/loginservice"
+		<form action="loginservice"
 			method="post">
 			<table style="with: 50%">
 				<tr>
