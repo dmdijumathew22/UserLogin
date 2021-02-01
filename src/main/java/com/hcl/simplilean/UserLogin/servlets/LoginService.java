@@ -15,6 +15,8 @@ import com.hcl.simplilean.UserLogin.services.Services;
 /**
  * Servlet implementation class login
  */
+
+//url mapping
 @WebServlet("/loginservice")
 public class LoginService extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -32,10 +34,10 @@ public class LoginService extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("text/html");
-		//PrintWriter out = response.getWriter();
+		
 		if (Services.validate(request.getParameter("userid"),request.getParameter("password"))) {
-//			out.println("Log In Successfull <br>");
-//			out.println("<a href=\"/user/index.jsp\">Log Out</a>");
+			//if login credentials match , forward to welcome.jsp.
+			
 			UserEntity u=Services.find(request.getParameter("userid"));
 			RequestDispatcher rd = getServletContext().getRequestDispatcher("/welcome.jsp");
 			request.setAttribute( "first_name",u.getFirstName());
@@ -44,6 +46,7 @@ public class LoginService extends HttpServlet {
 			request.setAttribute( "email",u.getEmail());
 			rd.forward(request, response);
 		}else {
+			//if login credentials doesn't match give error message
 			RequestDispatcher rd = getServletContext().getRequestDispatcher("/index.jsp");
 			request.setAttribute( "msg","<div style=\"color:Tomato;\">Wrong Username or Password used</div>");
 			rd.forward(request, response);
